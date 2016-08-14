@@ -1,0 +1,25 @@
+{
+  "name": "inspect",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^0.11.0",
+    "react-scripts": "0.2.1"
+  },
+  "dependencies": {
+    "glob": "^7.0.5",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-json-inspector": "^7.0.0",
+    "react-json-tree": "^0.10.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "repository": "https://github.com/joehua87/slate.git",
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  }
+}
