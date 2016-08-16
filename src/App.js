@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
+import SlateViewer from './SlateViewer';
 import './App.css';
 const data = require('./output.json');
 const keys = Object.keys(data)
+
+const Viewer = ({ name, data, className }) => (
+  <div className={className}>
+    <h3>{name}</h3>
+    <div style={{ padding: 10, border: '1px solid' }}>
+      <SlateViewer rawState={data} />
+    </div>
+    <details>
+      <summary>View JSON</summary>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </details>
+  </div>
+)
+
+Viewer.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  data: React.PropTypes.any,
+  className: React.PropTypes.string,
+}
 
 class App extends Component {
   state = {
@@ -12,37 +32,26 @@ class App extends Component {
     this.setState({ fixture })
   };
 
-  renderData = (key, data, className) => (
-    <div key={key} className={className}>
-      <h3>{key}</h3>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
-
   renderFixture = (fixture) => {
     const fixtureKeys = Object.keys(fixture);
     return (
       <div>
-        {fixtureKeys.map((key) => {
-          const { input, output, index, ...others } = fixture[key]
+        {fixtureKeys.map((name, idx) => {
+          const { input, output, index, ...others } = fixture[name]
           const otherKeys = Object.keys(others)
           return (
-            <div key={key} className="row">
-              <h2 className="col-sm-12">{key}</h2>
+            <div key={idx} className="row">
+              <h2 className="col-sm-12">{name}</h2>
               {otherKeys.length > 0 && (
                 <div className="col-sm-12">
-                  <h3>Data</h3>
-                  {otherKeys.map((key) => this.renderData(key, others[key]))}
+                  <h3>Others Data</h3>
+                  {otherKeys.map((childName, childIdx) => (
+                    <Viewer key={childIdx} name={childName} data={others[childName]} />
+                  ))}
                 </div>
               )}
-              <div className="col-sm-6">
-                <h3>Input</h3>
-                <pre>{JSON.stringify(input, null, 2)}</pre>
-              </div>
-              <div className="col-sm-6">
-                <h3>Output</h3>
-                <pre>{JSON.stringify(output, null, 2)}</pre>
-              </div>
+              <Viewer className="col-sm-6" name="Input" data={input} />
+              <Viewer className="col-sm-6" name="Output" data={output} />
               <div className="col-sm-12">
                 <details>
                   <summary>Scripts</summary>

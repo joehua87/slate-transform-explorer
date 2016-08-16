@@ -11,7 +11,8 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-json-inspector": "^7.0.0",
-    "react-json-tree": "^0.10.0"
+    "react-json-tree": "^0.10.0",
+    "slate": "^0.13.5"
   },
   "scripts": {
     "start": "react-scripts start",
