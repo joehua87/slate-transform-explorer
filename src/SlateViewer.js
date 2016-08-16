@@ -13,8 +13,9 @@ const schema = {
     'heading-six': props => <h6>{props.children}</h6>,
     'list-item': props => <li>{props.children}</li>,
     'paragraph': props => <p>{props.children}</p>,
-    // In test fixtures hashtag's isVoid = true, so we don't need to render children
-    'hashtag': props => <span style={{ backgroundColor: 'yellow' }}>#</span>,
+    'hashtag': props => <span style={{ backgroundColor: 'yellow' }}>{!!props.children ? <span>#{props.children}</span> : '#'}</span>,
+    'inner': props => <span style={{ backgroundColor: 'green' }}>{props.children}</span>,
+    'link': props => <a href="/">{props.children}</a>,
     'quote': props => <div style={{ paddingLeft: 10, borderLeft: '2px solid #ccc' }}>{props.children}</div>,
     'image': props => (
       <img
