@@ -13,7 +13,15 @@ const schema = {
     'heading-six': props => <h6>{props.children}</h6>,
     'list-item': props => <li>{props.children}</li>,
     'paragraph': props => <p>{props.children}</p>,
-    'image': props => <img src="https://pixabay.com/static/uploads/photo/2016/08/14/18/28/dahlia-1593633__180.jpg" />,
+    // In test fixtures hashtag's isVoid = true, so we don't need to render children
+    'hashtag': props => <span style={{ backgroundColor: 'yellow' }}>#</span>,
+    'quote': props => <div style={{ paddingLeft: 10, borderLeft: '2px solid #ccc' }}>{props.children}</div>,
+    'image': props => (
+      <img
+        role="presentation"
+        src="https://pixabay.com/static/uploads/photo/2016/08/14/18/28/dahlia-1593633__180.jpg"
+      />
+    ),
   }
 }
 
