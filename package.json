@@ -17,6 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "gh-pages": "npm run build && node gh-pages",
     "eject": "react-scripts eject"
   },
   "repository": "https://github.com/joehua87/slate.git",
